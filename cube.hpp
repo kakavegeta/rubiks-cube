@@ -1,32 +1,29 @@
-#ifndef CUBE_H
-#define CUBE_H
+#ifndef CUBE_HPP
+#define CUBE_HPP
 
 #include<utility>
 #include<cstdint>
 
-using namespace std;
+//using namespace std;
 
-namespace cube{
+namespace rubiks_cube{
 
 enum face_type{top = 0, bottom = 1, front = 2, back = 3, left = 4, right = 5};
 
-struct face{
-    enum face_type{
-        top = 0, bottom = 1, front = 2, back = 3, left = 4, right = 5
-    };
+struct face_t{
     int8_t c[9];
 };
 
-struct block{
+struct block_t{
     int8_t top, bottom, front, back, left, right;
 };
 
-typedef pair<const int8_t*, const int8_t*> block_info_t;
+using block_info_t = std::pair<const int8_t*, const int8_t*>;
 
-class cube{
+class cube_t{
     public:
-        cube();
-        block get_block(int*, int, int) const;
+        cube_t();
+        block_t get_block(int*, int, int) const;
         block_info_t get_corner() const;
         block_info_t get_edge() const;
         void rotate(face_type, int count = 1);
